@@ -59,5 +59,19 @@ public class iteration {
                 .map(Dish::getName)
                 .collect(toList());
         System.out.println(highCaloricDishes2);//[pork, beef, chicken, french fries, rice, season fruit, pizza, prawns, salmon]
+
+        //외부반복
+        List<Dish> vegetarianDishes = new ArrayList<>();
+        for(Dish d : menu){
+            if(d.isVegetarian()){
+                vegetarianDishes.add(d);
+            }
+        }
+
+        //내부반복
+        List<Dish> vegetarianDishes2 = menu.stream()
+                .filter(Dish::isVegetarian)
+                .collect(toList());
+        }
     }
-}
+
