@@ -55,14 +55,29 @@ public class MapToInt {
         System.out.println("짝수 = "+ range2.count());//2부터 99까지 49개의 짝수가 있다.
         System.out.println();
 
-        //Stream.of
+        //Stream.of - 스트림 생성
         Stream<String> streamOf = Stream.of("Modern", "Java", "In", "Action");
+        streamOf.map(String::toUpperCase)
+                .forEach(System.out::println);
 
-        streamOf.map(String::toUpperCase).forEach(System.out::println);
-
+        //Stream.empty() - 스트림 없애기
         Stream<String> emptyStream = Stream.empty();
         emptyStream.forEach(System.out::println);
 
+        //null이 될 수 있는 객체로 스트림 만들기
+        String homeValue = System.getProperty("home");
+        Stream<String> homeValueStream = homeValue == null ? Stream.empty() : Stream.of("home");
+
+        Stream<String> homeValueStream1 = Stream.ofNullable(System.getProperty("home"));
+
+        Stream<String> values = Stream.of("config", "home", "user")
+                                      .flatMap(key -> Stream.ofNullable(System.getProperty(key)));
+        values.forEach(System.out::println);
+        System.out.println();
+        //배열로 스트림 만들기
+        int[] numbers = {2, 3, 5, 7, 11, 13};
+        int sum2 = Arrays.stream(numbers).sum();
+        System.out.println(sum2);//41
         }
     }
 
